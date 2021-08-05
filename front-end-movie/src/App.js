@@ -88,12 +88,37 @@ const getData = () => {
 
 
    const handleDelete = (movie) => {
-     axios.delete(`http://localhost:3000/movies/${movie._id}`).then(() => {
-       getData();
+     axios.delete(`http://localhost:3000/movies/${movie._id}`)
+        .then(() => {
+           axios
+            .get('http://localhost:3000/movies')
+            .then((response) => {
+               setMovies(response.data)
+            })
      })
    }
    const handleShow = (e) => {
       setShow(!show);
+   }
+
+   const handleEdit = (movie) => {
+      axios.put(`http://localhost:3000/movies/${movie._id}`,
+         {
+            title:newTitle,
+            image:newImage,
+            releaseDate:newReleaseDate,
+            description:newDescription,
+            rating:newRating,
+            review:newReview,
+            category:newCategory
+         }
+      ).then(() => {
+         axios
+            .get('http://localhost:3000/todos')
+            .then((response) => {
+               setMovies(response.data)
+            })
+      })
    }
 
 
