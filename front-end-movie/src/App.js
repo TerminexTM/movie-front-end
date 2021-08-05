@@ -74,14 +74,14 @@ const App = () => {
       <h1>Movie App is Online</h1>
       <section className="newMovieForm container-fluid">
         <h2>Create A New Movie Review</h2>
-        <form className="form-control">
-          Title: <input className="form-control" type="text"/><br/>
-          Image: <input className="form-control" type="url"/><br/>
-          Release Date: <input  className="form-control" type="date"/><br/>
+        <form className="form-control" onChange={handleNewMovieForm}>
+          Title: <input className="form-control" type="text" onChange={handleNewTitleChange}/><br/>
+          Image: <input className="form-control" type="url" onChange={handleNewImageChange}/><br/>
+          Release Date: <input  className="form-control" type="date" onChange={handleNewReleaseDate}/><br/>
           <label for="description">Description: </label><br/>
-          <textarea className="form-control" id="description" rows="5" cols="33"></textarea><br/>
+          <textarea className="form-control" id="description" rows="5" cols="33" onChange={handleNewDescription}/><br/>
           <label for="category">Category: </label>
-          <select className="form-control" id="category">
+          <select className="form-control" id="category" onChange={handleNewCategory}>
             <option>Action</option>
             <option>Comedy</option>
             <option>Documentary</option>
@@ -90,9 +90,9 @@ const App = () => {
             <option>Horror</option>
             <option>Romance</option>
           </select><br/>
-          Rating: <input  className="form-control" type="number"/><br/>
+          Rating: <input  className="form-control" type="number" onChange={handleNewRating}/><br/>
           <label for="review">Review: </label><br/>
-          <textarea  className="form-control" id="review" rows="5" cols="33"></textarea><br/>
+          <textarea  className="form-control" id="review" rows="5" cols="33" onChange={handleNewReview}/><br/>
           <input className="btn btn-secondary" type="submit" value="Create New Movie Review"/>
         </form>
       </section>
