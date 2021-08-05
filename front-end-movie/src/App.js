@@ -135,11 +135,11 @@ const getData = () => {
       <section style={show? {display: "block"} : {display: "none"}} className="container-fluid">
         <h2>Create A New Movie Review</h2>
         <form className="form-control" onSubmit={handleNewMovieForm}>
-          Title: <input className="form-control" type="text" onChange={handleNewTitleChange}/><br/>
-          Image: <input className="form-control" type="url" onChange={handleNewImageChange}/><br/>
-          Release Date: <input  className="form-control" type="date" onChange={handleNewReleaseDate}/><br/>
+          Title: <input className="form-control" type="text" placeholder="Movie Title" onChange={handleNewTitleChange}/><br/>
+          Image: <input className="form-control" type="url" placeholder="Enter Image URL" onChange={handleNewImageChange}/><br/>
+          Release Date: <input  className="form-control" type="text" placeholder="Enter Release Date" onChange={handleNewReleaseDate}/><br/>
           <label htmlFor="description">Description: </label><br/>
-          <textarea className="form-control" id="description" rows="5" cols="33" onChange={handleNewDescription}/><br/>
+          <textarea className="form-control" id="description" placeholder="Movie Description" rows="5" cols="33" onChange={handleNewDescription}/><br/>
           <label htmlFor="category">Category: </label>
           <select className="form-control" id="category" onChange={handleNewCategory}>
             <option>Action</option>
@@ -150,9 +150,9 @@ const getData = () => {
             <option>Horror</option>
             <option>Romance</option>
           </select><br/>
-          Rating: <input  className="form-control" type="number" onChange={handleNewRating}/><br/>
+          Rating: <input  className="form-control" type="number" placeholder="Movie Rating" onChange={handleNewRating}/><br/>
           <label htmlFor="review">Review: </label><br/>
-          <textarea  className="form-control" id="review" rows="5" cols="33" onChange={handleNewReview}/><br/>
+          <textarea  className="form-control" id="review" placeholder="Movie Review" rows="5" cols="33" onChange={handleNewReview}/><br/>
           <input className="btn btn-secondary" type="submit" value="Create New Movie Review"/>
         </form>
       </section>
@@ -168,7 +168,7 @@ const getData = () => {
                    <h4>{movie.title}</h4>
                    <img src={movie.image} alt='Movie image not found' />
                    <p>{movie.category[0]}</p>
-                   <p>{Date(movie.releaseDate)}</p>
+                   <p>{movie.releaseDate}</p>
                    <p>{movie.description}</p>
                    <p>{movie.rating}</p>
                    <p>{movie.review}</p>
@@ -176,14 +176,21 @@ const getData = () => {
                    <button class="btn btn-warning" onClick={handleEditShow}>Edit</button>
                    <section style={editShow? {display: "block"} : {display: "none"}} className="container-fluid">
                       <h2>Edit Movie Review</h2>
+
+                      <form className="form-control" >
+                        Title: <input className="form-control" type="text" defaultValue={movie.title} onChange={handleNewTitleChange}/><br/>
+                        Image: <input className="form-control" type="url" defaultValue={movie.image} onChange={handleNewImageChange}/><br/>
+                        Release Date: <input  className="form-control" type="text"  defaultValue={movie.releaseDate} onChange={handleNewReleaseDate}/><br/>
+
                       <form className="form-control" onSubmit={ (event) => {handleEdit(movie)} } >
                         Title: <input className="form-control" type="text" defaultValue={movie.title} onChange={handleNewTitleChange}/><br/>
                         Image: <input className="form-control" type="url" value={movie.image} onChange={handleNewImageChange}/><br/>
                         Release Date: <input  className="form-control" type="date" value={Date(movie.releaseDate)} onChange={handleNewReleaseDate}/><br/>
+
                         <label htmlFor="description">Description: </label><br/>
-                        <textarea className="form-control" id="description" rows="5" cols="33" value={movie.description} onChange={handleNewDescription}/><br/>
+                        <textarea className="form-control" id="description" rows="5" cols="33" defaultValue={movie.description} onChange={handleNewDescription}/><br/>
                         <label htmlFor="category">Category: </label>
-                        <select className="form-control" id="category" value={movie.category} onChange={handleNewCategory}>
+                        <select className="form-control" id="category" defaultValue={movie.category} onChange={handleNewCategory}>
                           <option>Action</option>
                           <option>Comedy</option>
                           <option>Documentary</option>
@@ -192,10 +199,10 @@ const getData = () => {
                           <option>Horror</option>
                           <option>Romance</option>
                         </select><br/>
-                        Rating: <input  className="form-control" type="number" value={movie.rating} onChange={handleNewRating}/><br/>
+                        Rating: <input  className="form-control" type="number" defaultValue={movie.rating} onChange={handleNewRating}/><br/>
                         <label htmlFor="review">Review: </label><br/>
-                        <textarea  className="form-control" id="review" rows="5" cols="33" value={movie.review} onChange={handleNewReview}/><br/>
-                        <input className="btn btn-secondary" type="submit" value="Edit Movie Review"/>
+                        <textarea  className="form-control" id="review" rows="5" cols="33" defaultValue={movie.review} onChange={handleNewReview}/><br/>
+                        <input className="btn btn-secondary" type="submit" defaultValue="Edit Movie Review"/>
                       </form>
                     </section>
                 </>
