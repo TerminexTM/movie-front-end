@@ -96,9 +96,17 @@ const getData = () => {
    }
    const handleShow = (e) => {
       setShow(!show);
+      setNewTitle('');
+      setNewImage('');
+      setNewRating('');
+      setNewReview('');
+      setNewCategory('');
+      setNewDescription('');
+      setNewReleaseDate('');
    }
    const handleEditShow = (e) => {
     setEditShow(!editShow);
+
  }
 
 
@@ -107,13 +115,13 @@ const getData = () => {
       event.preventDefault();
       axios.put(`http://localhost:3000/movies/${movie._id}`,
          {
-            title:newTitle,
-            image:newImage,
-            releaseDate:newReleaseDate,
-            description:newDescription,
-            rating:newRating,
-            review:newReview,
-            category:newCategory
+            title:newTitle || movie.title,
+            image:newImage || movie.image,
+            releaseDate:newReleaseDate || movie.releaseDate,
+            description:newDescription || movie.description,
+            rating:newRating || movie.rating,
+            review:newReview || movie.review,
+            category:newCategory || movie.category,
          }
       ).then(() => {
          axios
