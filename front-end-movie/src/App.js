@@ -45,6 +45,7 @@ const App = () => {
           Rating: <input  className="form-control" type="number"/><br/>
           <label for="review">Review: </label><br/>
           <textarea  className="form-control" id="review" rows="5" cols="33"></textarea><br/>
+          <input className="btn btn-secondary" type="submit" value="Create New Movie Review"/>
         </form>
       </section>
       </>
