@@ -1,25 +1,32 @@
 import logo from './logo.svg';
 import './App.css';
+import React, {useState} from 'react'
+import axios from 'axios'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+
+const App = () => {
+   let [newTitle, setNewTitle] = useState('');
+   let [newImage, setNewImage] = useState('');
+   let [newReleaseDate, setNewReleaseDate] = useState('');
+   let [newDescription, setNewDescription] = useState('');
+   let [newCategory, setNewCategory] = useState('');
+   let [newRating, setNewRating] = useState(0);
+   let [newReview, setNewReview] = useState('');
+   let [movies, setMovies] = useState([]);
+
+
+   const handleMovies = (event)
+
+
+   //JSX RETURN
+   return (
+      <h1>Movie App is Online</h1>
+   )
 }
 
+
+
+//export App
 export default App;
