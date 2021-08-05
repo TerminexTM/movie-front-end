@@ -65,6 +65,7 @@ const App = () => {
                setMovies(response.data)
             })
       })
+      event.currentTarget.reset();
    }
    
 
@@ -78,9 +79,9 @@ const App = () => {
           Title: <input className="form-control" type="text" onChange={handleNewTitleChange}/><br/>
           Image: <input className="form-control" type="url" onChange={handleNewImageChange}/><br/>
           Release Date: <input  className="form-control" type="date" onChange={handleNewReleaseDate}/><br/>
-          <label for="description">Description: </label><br/>
+          <label htmlFor="description">Description: </label><br/>
           <textarea className="form-control" id="description" rows="5" cols="33" onChange={handleNewDescription}/><br/>
-          <label for="category">Category: </label>
+          <label htmlFor="category">Category: </label>
           <select className="form-control" id="category" onChange={handleNewCategory}>
             <option>Action</option>
             <option>Comedy</option>
@@ -91,7 +92,7 @@ const App = () => {
             <option>Romance</option>
           </select><br/>
           Rating: <input  className="form-control" type="number" onChange={handleNewRating}/><br/>
-          <label for="review">Review: </label><br/>
+          <label htmlFor="review">Review: </label><br/>
           <textarea  className="form-control" id="review" rows="5" cols="33" onChange={handleNewReview}/><br/>
           <input className="btn btn-secondary" type="submit" value="Create New Movie Review"/>
         </form>
