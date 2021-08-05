@@ -176,8 +176,8 @@ const getData = () => {
                    <button class="btn btn-warning" onClick={handleEditShow}>Edit</button>
                    <section style={editShow? {display: "block"} : {display: "none"}} className="container-fluid">
                       <h2>Edit Movie Review</h2>
-                      <form className="form-control" >
-                        Title: <input className="form-control" type="text" value={movie.title} onChange={handleNewTitleChange}/><br/>
+                      <form className="form-control" onSubmit={ (event) => {handleEdit(movie)} } >
+                        Title: <input className="form-control" type="text" defaultValue={movie.title} onChange={handleNewTitleChange}/><br/>
                         Image: <input className="form-control" type="url" value={movie.image} onChange={handleNewImageChange}/><br/>
                         Release Date: <input  className="form-control" type="date" value={Date(movie.releaseDate)} onChange={handleNewReleaseDate}/><br/>
                         <label htmlFor="description">Description: </label><br/>
