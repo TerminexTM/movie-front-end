@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 
 
@@ -19,6 +19,14 @@ const App = () => {
 //set set for hide components
   let [show, setShow] = useState(false);
 
+   //useffect to render data post pageload
+   useEffect(() => {
+      axios
+         .get('http://localhost:3000/movies')
+         .then((response) => {
+            setMovies(response.data)
+         })
+   })
 
 //getData
 const getData = () => {
@@ -77,6 +85,7 @@ const getData = () => {
    }
 
 
+
    
    const handleDelete = (movie) => {
      axios.delete(`http://localhost:3000/${movie._id}`).then(() => {
@@ -87,13 +96,15 @@ const getData = () => {
       setShow(!show);
    }
 
+
+
    //JSX RETURN
    return (
      <>
       <h1>Movie App is Online</h1>
       <section style={show? {display: "block"} : {display: "none"}} className="container-fluid">
         <h2>Create A New Movie Review</h2>
-        <form className="form-control" onChange={handleNewMovieForm}>
+        <form className="form-control" onSubmit={handleNewMovieForm}>
           Title: <input className="form-control" type="text" onChange={handleNewTitleChange}/><br/>
           Image: <input className="form-control" type="url" onChange={handleNewImageChange}/><br/>
           Release Date: <input  className="form-control" type="date" onChange={handleNewReleaseDate}/><br/>
@@ -115,7 +126,29 @@ const getData = () => {
           <input className="btn btn-secondary" type="submit" value="Create New Movie Review"/>
         </form>
       </section>
+
         <button className="btn btn-primary" onClick={handleShow}>Create Movie?</button>
+
+      <div class='container'>
+      <h2>Map Container</h2>
+      {
+          movies.map((movie) => {
+             return (
+                <>
+                   <h4>{movie.title}</h4>
+                   <img src={movie.image} alt='Movie image not found' />
+                   <p>{movie.category[0]}</p>
+                   <p>{movie.releaseDate}</p>
+                   <p>{movie.description}</p>
+                   <p>{movie.rating}</p>
+                   <p>{movie.review}</p>
+                </>
+             )
+          })
+      }
+      </div>
+
+
       </>
    )
 }
