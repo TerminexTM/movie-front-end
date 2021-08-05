@@ -86,9 +86,9 @@ const getData = () => {
 
 
 
-   
+
    const handleDelete = (movie) => {
-     axios.delete(`http://localhost:3000/${movie._id}`).then(() => {
+     axios.delete(`http://localhost:3000/movies/${movie._id}`).then(() => {
        getData();
      })
    }
@@ -142,6 +142,7 @@ const getData = () => {
                    <p>{movie.description}</p>
                    <p>{movie.rating}</p>
                    <p>{movie.review}</p>
+                   <button class="btn btn-danger" onClick={ (event)=> { handleDelete(movie) }}>DELETE</button>
                 </>
              )
           })
