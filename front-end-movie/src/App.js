@@ -90,13 +90,8 @@ const getData = () => {
 
 
    const handleDelete = (movie) => {
-     axios.delete(`http://localhost:3000/movies/${movie._id}`)
-        .then(() => {
-           axios
-            .get('http://localhost:3000/movies')
-            .then((response) => {
-               setMovies(response.data)
-            })
+     axios.delete(`http://localhost:3000/movies/${movie._id}`).then(() => {
+       getData();
      })
    }
    const handleShow = (e) => {
@@ -105,6 +100,8 @@ const getData = () => {
    const handleEditShow = (e) => {
     setEditShow(!editShow);
  }
+
+
 
    const handleEdit = (event, movie) => {
       event.preventDefault();
@@ -179,11 +176,11 @@ const getData = () => {
                       <h2>Edit Movie Review</h2>
 
 
-
                       <form className="form-control" onSubmit={ (event) => {handleEdit(event, movie)} } >
                         Title: <input className="form-control" type="text" defaultValue={movie.title} onChange={handleNewTitleChange}/><br/>
                         Image: <input className="form-control" type="url" defaultValue={movie.image} onChange={handleNewImageChange}/><br/>
                         Release Date: <input  className="form-control" type="date" defaultValue={movie.releaseDate} onChange={handleNewReleaseDate}/><br/>
+
 
                         <label htmlFor="description">Description: </label><br/>
                         <textarea className="form-control" id="description" rows="5" cols="33" defaultValue={movie.description} onChange={handleNewDescription}/><br/>
