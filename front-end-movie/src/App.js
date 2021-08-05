@@ -66,7 +66,7 @@ const App = () => {
             })
       })
    }
-   
+
 
    //JSX RETURN
    return (
@@ -75,8 +75,8 @@ const App = () => {
       <section className="newMovieForm container-fluid">
         <h2>Create A New Movie Review</h2>
         <form className="form-control">
-          Title: <input className="form-control" type="text"/><br/>
-          Image: <input className="form-control" type="url"/><br/>
+          Title: <input className="form-control" type="text" /><br/>
+          Image: <input className="form-control" type="url" /><br/>
           Release Date: <input  className="form-control" type="date"/><br/>
           <label for="description">Description: </label><br/>
           <textarea className="form-control" id="description" rows="5" cols="33"></textarea><br/>
