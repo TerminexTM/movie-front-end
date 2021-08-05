@@ -90,8 +90,13 @@ const getData = () => {
 
 
    const handleDelete = (movie) => {
-     axios.delete(`http://localhost:3000/movies/${movie._id}`).then(() => {
-       getData();
+     axios.delete(`http://localhost:3000/movies/${movie._id}`)
+        .then(() => {
+           axios
+            .get('http://localhost:3000/movies')
+            .then((response) => {
+               setMovies(response.data)
+            })
      })
    }
    const handleShow = (e) => {
@@ -100,6 +105,26 @@ const getData = () => {
    const handleEditShow = (e) => {
     setEditShow(!editShow);
  }
+
+   const handleEdit = (movie) => {
+      axios.put(`http://localhost:3000/movies/${movie._id}`,
+         {
+            title:newTitle,
+            image:newImage,
+            releaseDate:newReleaseDate,
+            description:newDescription,
+            rating:newRating,
+            review:newReview,
+            category:newCategory
+         }
+      ).then(() => {
+         axios
+            .get('http://localhost:3000/todos')
+            .then((response) => {
+               setMovies(response.data)
+            })
+      })
+   }
 
 
 
@@ -151,10 +176,17 @@ const getData = () => {
                    <button class="btn btn-warning" onClick={handleEditShow}>Edit</button>
                    <section style={editShow? {display: "block"} : {display: "none"}} className="container-fluid">
                       <h2>Edit Movie Review</h2>
+
                       <form className="form-control" >
                         Title: <input className="form-control" type="text" defaultValue={movie.title} onChange={handleNewTitleChange}/><br/>
                         Image: <input className="form-control" type="url" defaultValue={movie.image} onChange={handleNewImageChange}/><br/>
                         Release Date: <input  className="form-control" type="text"  defaultValue={movie.releaseDate} onChange={handleNewReleaseDate}/><br/>
+
+                      <form className="form-control" onSubmit={ (event) => {handleEdit(movie)} } >
+                        Title: <input className="form-control" type="text" defaultValue={movie.title} onChange={handleNewTitleChange}/><br/>
+                        Image: <input className="form-control" type="url" value={movie.image} onChange={handleNewImageChange}/><br/>
+                        Release Date: <input  className="form-control" type="date" value={Date(movie.releaseDate)} onChange={handleNewReleaseDate}/><br/>
+
                         <label htmlFor="description">Description: </label><br/>
                         <textarea className="form-control" id="description" rows="5" cols="33" defaultValue={movie.description} onChange={handleNewDescription}/><br/>
                         <label htmlFor="category">Category: </label>
