@@ -18,6 +18,8 @@ const App = () => {
    let [movies, setMovies] = useState([]);
 //set set for hide components
   let [show, setShow] = useState(false);
+  let [editShow, setEditShow] = useState(false);
+
 
    //useffect to render data post pageload
    useEffect(() => {
@@ -95,6 +97,9 @@ const getData = () => {
    const handleShow = (e) => {
       setShow(!show);
    }
+   const handleEditShow = (e) => {
+    setEditShow(!editShow);
+ }
 
 
 
@@ -138,11 +143,36 @@ const getData = () => {
                    <h4>{movie.title}</h4>
                    <img src={movie.image} alt='Movie image not found' />
                    <p>{movie.category[0]}</p>
-                   <p>{movie.releaseDate}</p>
+                   <p>{Date(movie.releaseDate)}</p>
                    <p>{movie.description}</p>
                    <p>{movie.rating}</p>
                    <p>{movie.review}</p>
                    <button class="btn btn-danger" onClick={ (event)=> { handleDelete(movie) }}>DELETE</button>
+                   <button class="btn btn-warning" onClick={handleEditShow}>Edit</button>
+                   <section style={editShow? {display: "block"} : {display: "none"}} className="container-fluid">
+                      <h2>Edit Movie Review</h2>
+                      <form className="form-control" >
+                        Title: <input className="form-control" type="text" value={movie.title} onChange={handleNewTitleChange}/><br/>
+                        Image: <input className="form-control" type="url" value={movie.image} onChange={handleNewImageChange}/><br/>
+                        Release Date: <input  className="form-control" type="date" value={Date(movie.releaseDate)} onChange={handleNewReleaseDate}/><br/>
+                        <label htmlFor="description">Description: </label><br/>
+                        <textarea className="form-control" id="description" rows="5" cols="33" value={movie.description} onChange={handleNewDescription}/><br/>
+                        <label htmlFor="category">Category: </label>
+                        <select className="form-control" id="category" value={movie.category} onChange={handleNewCategory}>
+                          <option>Action</option>
+                          <option>Comedy</option>
+                          <option>Documentary</option>
+                          <option>Drama</option>
+                          <option>Fantasy</option>
+                          <option>Horror</option>
+                          <option>Romance</option>
+                        </select><br/>
+                        Rating: <input  className="form-control" type="number" value={movie.rating} onChange={handleNewRating}/><br/>
+                        <label htmlFor="review">Review: </label><br/>
+                        <textarea  className="form-control" id="review" rows="5" cols="33" value={movie.review} onChange={handleNewReview}/><br/>
+                        <input className="btn btn-secondary" type="submit" value="Edit Movie Review"/>
+                      </form>
+                    </section>
                 </>
              )
           })
