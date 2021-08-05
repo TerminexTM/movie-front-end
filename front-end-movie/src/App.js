@@ -16,10 +16,18 @@ const App = () => {
    let [newRating, setNewRating] = useState(0);
    let [newReview, setNewReview] = useState('');
    let [movies, setMovies] = useState([]);
+//set set for hide components
+  let [show, setShow] = useState(false);
 
 
-
-
+//getData
+const getData = () => {
+  axios
+  .get('http://localhost:3000/movies')
+  .then((response) => {
+     setMovies(response.data)
+  })
+}
 
 
 //event listeners for the form document
@@ -67,13 +75,23 @@ const App = () => {
       })
       event.currentTarget.reset();
    }
+
+
    
+   const handleDelete = (movie) => {
+     axios.delete(`http://localhost:3000/${movie._id}`).then(() => {
+       getData();
+     })
+   }
+   const handleShow = (e) => {
+      setShow(!show);
+   }
 
    //JSX RETURN
    return (
      <>
       <h1>Movie App is Online</h1>
-      <section className="newMovieForm container-fluid">
+      <section style={show? {display: "block"} : {display: "none"}} className="container-fluid">
         <h2>Create A New Movie Review</h2>
         <form className="form-control" onChange={handleNewMovieForm}>
           Title: <input className="form-control" type="text" onChange={handleNewTitleChange}/><br/>
@@ -97,6 +115,7 @@ const App = () => {
           <input className="btn btn-secondary" type="submit" value="Create New Movie Review"/>
         </form>
       </section>
+        <button className="btn btn-primary" onClick={handleShow}>Create Movie?</button>
       </>
    )
 }
