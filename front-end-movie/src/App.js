@@ -24,16 +24,16 @@ const App = () => {
    return (
      <>
       <h1>Movie App is Online</h1>
-      <section className="newMovieForm">
+      <section className="newMovieForm container-fluid">
         <h2>Create A New Movie Review</h2>
-        <form>
-          Title: <input type="text"/><br/>
-          Image: <input type="url"/><br/>
-          Release Date: <input type="date"/><br/>
+        <form className="form-control">
+          Title: <input className="form-control" type="text"/><br/>
+          Image: <input className="form-control" type="url"/><br/>
+          Release Date: <input  className="form-control" type="date"/><br/>
           <label for="description">Description: </label><br/>
-          <textarea id="description" rows="5" cols="33"></textarea><br/>
+          <textarea className="form-control" id="description" rows="5" cols="33"></textarea><br/>
           <label for="category">Category: </label>
-          <select id="category">
+          <select className="form-control" id="category">
             <option>Action</option>
             <option>Comedy</option>
             <option>Documentary</option>
@@ -42,9 +42,9 @@ const App = () => {
             <option>Horror</option>
             <option>Romance</option>
           </select><br/>
-          Rating: <input type="number"/><br/>
+          Rating: <input  className="form-control" type="number"/><br/>
           <label for="review">Review: </label><br/>
-          <textarea id="review" rows="5" cols="33"></textarea><br/>
+          <textarea  className="form-control" id="review" rows="5" cols="33"></textarea><br/>
         </form>
       </section>
       </>
