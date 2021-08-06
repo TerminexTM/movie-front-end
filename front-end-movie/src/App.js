@@ -94,7 +94,7 @@ const getData = () => {
      })
    }
    const handleShow = (e) => {
-      // setShow(!show);
+      setShow(!show);
       // setNewTitle('');
       // setNewImage('');
       // setNewRating('');
