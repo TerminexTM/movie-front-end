@@ -108,9 +108,7 @@ const getData = () => {
       console.log(e.currentTarget)  
       setEditShow(!editShow)
    }
-
-
-
+   
    const handleEdit = (event, movie) => {
       axios.put(`http://localhost:3000/movies/${movie._id}`,
          {
@@ -127,7 +125,11 @@ const getData = () => {
       })
    }
 
-
+   const handleSeed = () => {
+     axios.get('http://localhost:3000/movies/seed').then(() => {
+       getData();
+     })
+   }
 
    //JSX RETURN
    return (
@@ -157,6 +159,7 @@ const getData = () => {
           <input className="btn btn-primary" type="submit" value="Create New Movie Review"/>
           <button className="btn btn-warning" onClick={handleShow}>Close</button>
         </form>
+        <button className="btn btn-secondary seedBtn" onClick={handleSeed}>Create seed?</button>
         <button className="btn btn-secondary newBtn" onClick={handleShow}>Create Movie?</button>
      </div>
       <div className='container-fluid border mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 main'>

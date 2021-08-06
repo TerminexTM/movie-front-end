@@ -62,5 +62,8 @@ body{
   background-color: #FFDAB9;
 }
 .newBtn{
+  margin-left: 5px;
+}
+.seedBtn{
   margin-left: 35vw;
 }
