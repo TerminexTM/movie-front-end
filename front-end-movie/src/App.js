@@ -96,6 +96,18 @@ const getData = () => {
    }
    const handleShow = (e) => {
       setShow(!show);
+
+      // setNewTitle('');
+      // setNewImage('');
+      // setNewRating('');
+      // setNewReview('');
+      // setNewCategory('');
+      // setNewDescription('');
+      // setNewReleaseDate('');
+   }
+   const handleEditShow = (e,movie) => {
+      console.log(e.currentTarget)  
+      setEditShow(!editShow)
       setNewTitle('');
       setNewImage('');
       setNewRating('');
@@ -103,10 +115,6 @@ const getData = () => {
       setNewCategory('');
       setNewDescription('');
       setNewReleaseDate('');
-   }
-   const handleEditShow = (e,movie) => {
-      console.log(e.currentTarget)  
-      setEditShow(!editShow)
    }
    
    const handleEdit = (event, movie) => {
