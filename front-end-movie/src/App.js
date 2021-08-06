@@ -1,3 +1,4 @@
+import logo from './logo.svg';
 import './App.css';
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
@@ -94,30 +95,23 @@ const getData = () => {
      })
    }
    const handleShow = (e) => {
-      // setShow(!show);
-      // setNewTitle('');
-      // setNewImage('');
-      // setNewRating('');
-      // setNewReview('');
-      // setNewCategory('');
-      // setNewDescription('');
-      // setNewReleaseDate('');
+      setShow(!show);
+      setNewTitle('');
+      setNewImage('');
+      setNewRating('');
+      setNewReview('');
+      setNewCategory('');
+      setNewDescription('');
+      setNewReleaseDate('');
    }
-   const handleEditShow = (e, movie) => {
-    setEditShow(!editShow);
-    setNewTitle('');
-    setNewImage('');
-    setNewRating('');
-    setNewReview('');
-    setNewCategory('');
-    setNewDescription('');
-    setNewReleaseDate('');
- }
+   const handleEditShow = (e,movie) => {
+      console.log(e.currentTarget)  
+      setEditShow(!editShow)
+   }
 
 
 
    const handleEdit = (event, movie) => {
-      event.preventDefault();
       axios.put(`http://localhost:3000/movies/${movie._id}`,
          {
             title:newTitle || movie.title,
@@ -129,11 +123,7 @@ const getData = () => {
             category:newCategory || movie.category,
          }
       ).then(() => {
-         axios
-            .get('http://localhost:3000/movies')
-            .then((response) => {
-               setMovies(response.data)
-            })
+        getData();
       })
    }
 
@@ -142,17 +132,18 @@ const getData = () => {
    //JSX RETURN
    return (
      <>
-      <h1>Movie App is Online</h1>
+     <div className="header">   
+      <h1>Movie App</h1>
       <section className="container-fluid">
-        <h2>Create A New Movie Review</h2>
         <form style={show? {display: "block"} : {display: "none"}}  className="form-control modal" onSubmit={handleNewMovieForm}>
+        <h2>Create A New Movie Review</h2>
           Title: <input className="form-control" type="text" placeholder="Movie Title" onChange={handleNewTitleChange}/><br/>
           Image: <input className="form-control" type="url" placeholder="Enter Image URL" onChange={handleNewImageChange}/><br/>
           Release Date: <input  className="form-control" type="text" placeholder="Enter Release Date" onChange={handleNewReleaseDate}/><br/>
           <label htmlFor="description">Description: </label><br/>
           <textarea className="form-control" id="description" placeholder="Movie Description" rows="5" cols="33" onChange={handleNewDescription}/><br/>
           <label htmlFor="category">Category: </label>
-          <select className="form-control" id="category" onChange={handleNewCategory}>
+          <select className="form-control" id="category" multiple={false} onChange={handleNewCategory}>
             <option>Action</option>
             <option>Comedy</option>
             <option>Documentary</option>
@@ -165,43 +156,37 @@ const getData = () => {
           <label htmlFor="review">Review: </label><br/>
           <textarea  className="form-control" id="review" placeholder="Movie Review" rows="5" cols="33" onChange={handleNewReview}/><br/>
           <input className="btn btn-secondary" type="submit" value="Create New Movie Review"/>
-          <button className="btn btn-secondary" onClick={handleShow}>Close</button>
+          <button className="btn btn-warning" onClick={handleShow}>Close</button>
         </form>
         <button className="btn btn-primary" onClick={handleShow}>Create Movie?</button>
       </section>
-
-
-      <div class='container'>
-      <h2>Map Container</h2>
-      <div className="row row-cols-lg-4 row-cols-md-3 row-cols-sm-4 row-cols-1">
+     </div>
+      <div className='container-fluid row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 main'>
       {
           movies.map((movie) => {
              return (
                 <>
-
-                  <div className='card col'>
-                   <h4 className="card-header text-center">{movie.title}</h4>
-                   <img className='card-img' src={movie.image} alt='Movie image not found' />
-                   <div className="card-body">
-                      <p className="card-text">{movie.category}</p>
-                      <p className="card-text">{movie.releaseDate}</p>
-                      <p className="card-text">{movie.description}</p>
-                      <p className="card-text">{movie.rating}</p>
-                      <p className="card-text">{movie.review}</p>
-                      <button class="btn btn-danger" onClick={ (event)=> { handleDelete(movie) }}>DELETE</button>
-                      <button class="btn btn-warning" onClick={handleEditShow}>Edit</button>
+                  <div className="cols">
+                  <div className="card">
+                   <h4>{movie.title}</h4>
+                   <img src={movie.image} alt='Movie image not found' />
+                   <p>{movie.category}</p>
+                   <p>{movie.releaseDate}</p>
+                   <p>{movie.description}</p>
+                   <p>{movie.rating}</p>
+                   <p>{movie.review}</p>
+                   <button style={ {display: editShow? "none" : "block"}} className="btn btn-danger" onClick={ (event)=> { handleDelete(movie) }}>DELETE</button>
+                   <button  style={ {display: editShow? "none" : "block"}} className="btn btn-warning" onClick={(event)=>{handleEditShow(event, movie)}}>Edit</button>
                    </div>
-                  </div>
-                   <section  className="container-fluid">
-                      <form style={editShow? {display: "block"} : {display: "none"}} className="form-control modal" onSubmit={ (event) => {handleEdit(event, movie)} } >
+                      <form  style={ {display: editShow? "block" : "none"}} className="form-control" onSubmit={ (event) => {handleEdit(event, movie)} } >
                       <h2>Edit Movie Review</h2>
                         Title: <input className="form-control" type="text" defaultValue={movie.title} onChange={handleNewTitleChange}/><br/>
                         Image: <input className="form-control" type="url" defaultValue={movie.image} onChange={handleNewImageChange}/><br/>
                         Release Date: <input  className="form-control" type="text" defaultValue={movie.releaseDate} onChange={handleNewReleaseDate}/><br/>
                         <label htmlFor="description">Description: </label><br/>
                         <textarea className="form-control" id="description" rows="5" cols="33" defaultValue={movie.description} onChange={handleNewDescription}/><br/>
-                        <label htmlFor="category">Category: </label>
-                        <select className="form-control" id="category" defaultValue={movie.category} onChange={handleNewCategory}>
+                        <label htmlFor="category" >Category: </label>
+                        <select className="form-control" multiple={true} id="category" defaultValue={movie.category} onChange={handleNewCategory}>
                           <option>Action</option>
                           <option>Comedy</option>
                           <option>Documentary</option>
@@ -214,19 +199,19 @@ const getData = () => {
                         <label htmlFor="review">Review: </label><br/>
                         <textarea  className="form-control" id="review" rows="5" cols="33" defaultValue={movie.review} onChange={handleNewReview}/><br/>
                         <input className="btn btn-secondary" type="submit" defaultValue="Close"/>
-                      <button class="btn btn-warning" onClick={handleEditShow}>Edit</button>
+                      <button className="btn btn-danger" onClick={ (event)=> { handleDelete(movie) }}>DELETE</button>
+                      <button className="btn btn-warning" onClick={handleEditShow}>Close</button>
                       </form>
-                    </section>
+                  </div>
                 </>
              )
           })
       }
       </div>
-      </div>
+   
 
 
       </>
-
    )
 }
 
