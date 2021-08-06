@@ -173,7 +173,7 @@ const getData = () => {
                 <>
                    <h4>{movie.title}</h4>
                    <img src={movie.image} alt='Movie image not found' />
-                   <p>{movie.category[0]}</p>
+                   <p>{movie.category}</p>
                    <p>{movie.releaseDate}</p>
                    <p>{movie.description}</p>
                    <p>{movie.rating}</p>
