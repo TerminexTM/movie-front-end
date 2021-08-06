@@ -168,22 +168,28 @@ const getData = () => {
 
       <div class='container'>
       <h2>Map Container</h2>
+      <div className="row row-cols-lg-4 row-cols-md-3 row-cols-sm-4 row-cols-1">
       {
           movies.map((movie) => {
              return (
                 <>
-                   <h4>{movie.title}</h4>
-                   <img src={movie.image} alt='Movie image not found' />
-                   <p>{movie.category}</p>
-                   <p>{movie.releaseDate}</p>
-                   <p>{movie.description}</p>
-                   <p>{movie.rating}</p>
-                   <p>{movie.review}</p>
-                   <button class="btn btn-danger" onClick={ (event)=> { handleDelete(movie) }}>DELETE</button>
-                   <button class="btn btn-warning" onClick={handleEditShow}>Edit</button>
+
+                  <div className='card col'>
+                   <h4 className="card-header text-center">{movie.title}</h4>
+                   <img className='card-img' src={movie.image} alt='Movie image not found' />
+                   <div className="card-body">
+                      <p className="card-text">{movie.category}</p>
+                      <p className="card-text">{movie.releaseDate}</p>
+                      <p className="card-text">{movie.description}</p>
+                      <p className="card-text">{movie.rating}</p>
+                      <p className="card-text">{movie.review}</p>
+                      <button class="btn btn-danger" onClick={ (event)=> { handleDelete(movie) }}>DELETE</button>
+                      <button class="btn btn-warning" onClick={handleEditShow}>Edit</button>
+                   </div>
+                  </div>
                    <section  className="container-fluid">
-                      <h2>Edit Movie Review</h2>
                       <form style={editShow? {display: "block"} : {display: "none"}} className="form-control modal" onSubmit={ (event) => {handleEdit(event, movie)} } >
+                      <h2>Edit Movie Review</h2>
                         Title: <input className="form-control" type="text" defaultValue={movie.title} onChange={handleNewTitleChange}/><br/>
                         Image: <input className="form-control" type="url" defaultValue={movie.image} onChange={handleNewImageChange}/><br/>
                         Release Date: <input  className="form-control" type="text" defaultValue={movie.releaseDate} onChange={handleNewReleaseDate}/><br/>
@@ -211,9 +217,11 @@ const getData = () => {
           })
       }
       </div>
+      </div>
 
 
       </>
+
    )
 }
 
