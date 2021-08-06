@@ -138,9 +138,9 @@ const getData = () => {
    return (
      <>
       <h1>Movie App is Online</h1>
-      <section style={show? {display: "block"} : {display: "none"}} className="container-fluid">
+      <section className="container-fluid">
         <h2>Create A New Movie Review</h2>
-        <form className="form-control" onSubmit={handleNewMovieForm}>
+        <form style={show? {display: "block"} : {display: "none"}}  className="form-control modal" onSubmit={handleNewMovieForm}>
           Title: <input className="form-control" type="text" placeholder="Movie Title" onChange={handleNewTitleChange}/><br/>
           Image: <input className="form-control" type="url" placeholder="Enter Image URL" onChange={handleNewImageChange}/><br/>
           Release Date: <input  className="form-control" type="text" placeholder="Enter Release Date" onChange={handleNewReleaseDate}/><br/>
@@ -160,10 +160,11 @@ const getData = () => {
           <label htmlFor="review">Review: </label><br/>
           <textarea  className="form-control" id="review" placeholder="Movie Review" rows="5" cols="33" onChange={handleNewReview}/><br/>
           <input className="btn btn-secondary" type="submit" value="Create New Movie Review"/>
+          <button className="btn btn-secondary" onClick={handleShow}>Close</button>
         </form>
+        <button className="btn btn-primary" onClick={handleShow}>Create Movie?</button>
       </section>
 
-        <button className="btn btn-primary" onClick={handleShow}>Create Movie?</button>
 
       <div class='container'>
       <h2>Map Container</h2>
@@ -180,16 +181,12 @@ const getData = () => {
                    <p>{movie.review}</p>
                    <button class="btn btn-danger" onClick={ (event)=> { handleDelete(movie) }}>DELETE</button>
                    <button class="btn btn-warning" onClick={handleEditShow}>Edit</button>
-                   <section style={editShow? {display: "block"} : {display: "none"}} className="container-fluid">
+                   <section  className="container-fluid">
                       <h2>Edit Movie Review</h2>
-
-
-                      <form className="form-control" onSubmit={ (event) => {handleEdit(event, movie)} } >
+                      <form style={editShow? {display: "block"} : {display: "none"}} className="form-control modal" onSubmit={ (event) => {handleEdit(event, movie)} } >
                         Title: <input className="form-control" type="text" defaultValue={movie.title} onChange={handleNewTitleChange}/><br/>
                         Image: <input className="form-control" type="url" defaultValue={movie.image} onChange={handleNewImageChange}/><br/>
-                        Release Date: <input  className="form-control" type="date" defaultValue={movie.releaseDate} onChange={handleNewReleaseDate}/><br/>
-
-
+                        Release Date: <input  className="form-control" type="text" defaultValue={movie.releaseDate} onChange={handleNewReleaseDate}/><br/>
                         <label htmlFor="description">Description: </label><br/>
                         <textarea className="form-control" id="description" rows="5" cols="33" defaultValue={movie.description} onChange={handleNewDescription}/><br/>
                         <label htmlFor="category">Category: </label>
@@ -205,7 +202,8 @@ const getData = () => {
                         Rating: <input  className="form-control" type="number" defaultValue={movie.rating} onChange={handleNewRating}/><br/>
                         <label htmlFor="review">Review: </label><br/>
                         <textarea  className="form-control" id="review" rows="5" cols="33" defaultValue={movie.review} onChange={handleNewReview}/><br/>
-                        <input className="btn btn-secondary" type="submit" defaultValue="Edit Movie Review"/>
+                        <input className="btn btn-secondary" type="submit" defaultValue="Close"/>
+                      <button class="btn btn-warning" onClick={handleEditShow}>Edit</button>
                       </form>
                     </section>
                 </>
