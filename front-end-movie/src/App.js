@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
@@ -95,18 +94,24 @@ const getData = () => {
      })
    }
    const handleShow = (e) => {
-      setShow(!show);
-      setNewTitle('');
-      setNewImage('');
-      setNewRating('');
-      setNewReview('');
-      setNewCategory('');
-      setNewDescription('');
-      setNewReleaseDate('');
+      // setShow(!show);
+      // setNewTitle('');
+      // setNewImage('');
+      // setNewRating('');
+      // setNewReview('');
+      // setNewCategory('');
+      // setNewDescription('');
+      // setNewReleaseDate('');
    }
-   const handleEditShow = (e) => {
+   const handleEditShow = (e, movie) => {
     setEditShow(!editShow);
-
+    setNewTitle('');
+    setNewImage('');
+    setNewRating('');
+    setNewReview('');
+    setNewCategory('');
+    setNewDescription('');
+    setNewReleaseDate('');
  }
 
 
@@ -125,7 +130,7 @@ const getData = () => {
          }
       ).then(() => {
          axios
-            .get('http://localhost:3000/todos')
+            .get('http://localhost:3000/movies')
             .then((response) => {
                setMovies(response.data)
             })
