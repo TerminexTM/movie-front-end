@@ -1,5 +1,9 @@
+body{
+  background-color: #F8AD9D;
+}
 .App {
   text-align: center;
+  
 }
 
 .App-logo {
@@ -39,22 +43,24 @@
 .card-body {
    text-align: center;
 }
-
 .main{
-  border: 1px solid red;
+  background-color: #FBC4AB;
 }
-
+.card{
+  background-color: #FFDAB9;
+  
+}
 .hidden{
   display: none;
 }
 
 .header{
-  display: grid;
-  grid-template-columns: repeat (3, 25vw );
-}
-.title{
-  grid-column: 2/3;
+  border: 1px solid blue;
+  display: flex;
+  width: 98vw;
+  justify-content: flex-end;
+  background-color: #FFDAB9;
 }
 .newBtn{
-  grid-column: 3/-1;
+  margin-left: 35vw;
 }

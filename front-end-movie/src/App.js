@@ -134,7 +134,6 @@ const getData = () => {
      <>
      <div className="header">   
       <h1>Movie App</h1>
-      <section className="container-fluid">
         <form style={show? {display: "block"} : {display: "none"}}  className="form-control modal" onSubmit={handleNewMovieForm}>
         <h2>Create A New Movie Review</h2>
           Title: <input className="form-control" type="text" placeholder="Movie Title" onChange={handleNewTitleChange}/><br/>
@@ -155,18 +154,17 @@ const getData = () => {
           Rating: <input  className="form-control" type="number" placeholder="Movie Rating" onChange={handleNewRating}/><br/>
           <label htmlFor="review">Review: </label><br/>
           <textarea  className="form-control" id="review" placeholder="Movie Review" rows="5" cols="33" onChange={handleNewReview}/><br/>
-          <input className="btn btn-secondary" type="submit" value="Create New Movie Review"/>
+          <input className="btn btn-primary" type="submit" value="Create New Movie Review"/>
           <button className="btn btn-warning" onClick={handleShow}>Close</button>
         </form>
-        <button className="btn btn-primary" onClick={handleShow}>Create Movie?</button>
-      </section>
+        <button className="btn btn-secondary newBtn" onClick={handleShow}>Create Movie?</button>
      </div>
-      <div className='container-fluid row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 main'>
+      <div className='container-fluid border mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 main'>
       {
           movies.map((movie) => {
              return (
                 <>
-                  <div className="cols">
+                  <div className="cols p-3">
                   <div className="card">
                    <h4>{movie.title}</h4>
                    <img src={movie.image} alt='Movie image not found' />
