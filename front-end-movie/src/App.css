@@ -1,5 +1,9 @@
+body{
+  background-color: #F8AD9D;
+}
 .App {
   text-align: center;
+  
 }
 
 .App-logo {
@@ -38,4 +42,28 @@
 }
 .card-body {
    text-align: center;
+}
+.main{
+  background-color: #FBC4AB;
+}
+.card{
+  background-color: #FFDAB9;
+  
+}
+.hidden{
+  display: none;
+}
+
+.header{
+  border: 1px solid blue;
+  display: flex;
+  width: 98vw;
+  justify-content: flex-end;
+  background-color: #FFDAB9;
+}
+.newBtn{
+  margin-left: 5px;
+}
+.seedBtn{
+  margin-left: 35vw;
 }
